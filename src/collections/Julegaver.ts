@@ -19,5 +19,23 @@ export const Julegaver: CollectionConfig = {
             label: "Hva er julegaven",
             required: true,
         },
+        {
+            name: "mottaker",
+            type: "text",
+            label: "Hvem skal få denne gaven",
+            required: true,
+        },
+        {
+            name: "pris",
+            type: "number",
+            label: "Hva koster gaven",
+            defaultValue: 150,
+        },
+        {
+            name: "kjopt",
+            type: "checkbox",
+            label: "Er gaven kjøpt inn",
+            defaultValue: false,
+        },
     ],
 };
