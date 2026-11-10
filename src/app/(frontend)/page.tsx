@@ -1,4 +1,4 @@
-import { createJulegave, deleteJulegave, readJulegaver } from "./actions";
+import { createJulegave, deleteJulegave, readJulegaver, updateJulegave } from "./actions";
 
 export default async function HomePage() {
   const julegaver = await readJulegaver();
@@ -27,7 +27,7 @@ export default async function HomePage() {
               {
                 julegaver.map(gave => (
                   <article key={gave.id}>
-                    <form>
+                    <form action={updateJulegave.bind(null, gave.id)}>
                       <label>
                         <span>Julegave</span>
                         <input type="text" name="betegnelse" required defaultValue={gave.betegnelse} />

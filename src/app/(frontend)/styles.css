@@ -71,3 +71,25 @@ code {
     gap: 0.25rem;
   }
 }
+
+.julegave-grid {
+  display: grid;
+  grid-template-columns: repeat(6, auto);
+  justify-content: start;
+  gap: 0.25rem;
+
+  form, label {
+    display: contents;
+  }
+
+  article {
+    display: grid;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
+    &:nth-child(odd) {
+      background-color: orange;
+    }
+  }
+}
