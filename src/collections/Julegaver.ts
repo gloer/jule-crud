@@ -16,7 +16,8 @@ export const Julegaver: CollectionConfig = {
         {
             name: "betegnelse",
             type: "text",
-            
+            label: "Hva er julegaven",
+            required: true,
         },
     ],
 };
