@@ -4,7 +4,20 @@ import config from "@payload-config";
 import { revalidatePath } from "next/cache";
 import { getPayload } from "payload";
 
-export default async function createJulegave(formData: FormData) {
+export async function readJulegaver() {
+    const payload = await getPayload({ config });
+
+    const queryResult = await payload.find({
+        collection: "julegaver",
+        sort: "-createdAt",
+        limit: 100,        
+        overrideAccess: false,
+    });
+
+    return queryResult.docs;
+}
+
+export async function createJulegave(formData: FormData) {
     const betegnelse = formData.get("betegnelse");
     const mottaker = formData.get("mottaker");
 
