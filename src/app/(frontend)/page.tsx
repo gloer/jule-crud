@@ -1,4 +1,4 @@
-import { createJulegave, readJulegaver } from "./actions";
+import { createJulegave, deleteJulegave, readJulegaver } from "./actions";
 
 export default async function HomePage() {
   const julegaver = await readJulegaver();
@@ -23,13 +23,28 @@ export default async function HomePage() {
           julegaver.length === 0 ? (
             <p>Nissen har nok ikke vært her ennå</p>
           ) : (
-            <>
+            <section className="julegave-grid">
               {
                 julegaver.map(gave => (
-                  <p key={gave.id}>{gave.mottaker} skal få {gave.betegnelse}</p>
+                  <article key={gave.id}>
+                    <form>
+                      <label>
+                        <span>Julegave</span>
+                        <input type="text" name="betegnelse" required defaultValue={gave.betegnelse} />
+                      </label>
+                      <label>
+                        <span>Mottaker</span>
+                        <input type="text" name="mottaker" required defaultValue={gave.mottaker} />
+                      </label>
+                      <button type="submit">Oppdater gave</button>
+                    </form>
+                    <form action={deleteJulegave.bind(null, gave.id)}>
+                      <button type="submit" title="Slett julegave">X</button>
+                    </form>
+                  </article>
                 ))
               }
-            </>
+            </section>
           )
         }
       </section>

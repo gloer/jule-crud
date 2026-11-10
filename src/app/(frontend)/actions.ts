@@ -4,6 +4,23 @@ import config from "@payload-config";
 import { revalidatePath } from "next/cache";
 import { getPayload } from "payload";
 
+export async function deleteJulegave(id: number) {
+    if(!Number.isInteger(id)) {
+        throw new Error("Ugyldig id");
+    }
+
+    const payload = await getPayload({ config });
+
+    await payload.delete({
+        collection: "julegaver",
+        id,
+        overrideAccess: false,
+    });
+
+    revalidatePath("/");
+
+}
+
 export async function readJulegaver() {
     const payload = await getPayload({ config });
 
